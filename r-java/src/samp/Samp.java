@@ -20,9 +20,13 @@ public class Samp {
             	System.out.println(i);
             System.out.println("The probability is=" + prob);*/
 			connection.eval("source('"+place+"\\\\process.R')");
-			double probability = connection.eval("binomial(20,0.5,"+ vector +")").asDouble();
+			connection.eval("numbers = rbinom(30,100,0.5)");
+			int[] num = connection.eval("numbers").asIntegers();
+			for(int j:num)
+            	System.out.println(j);
+			double probability = connection.eval("binomial(100,0.5,numbers)").asDouble();
 			System.out.println("The probability is=" + probability);
-			double[] prob = connection.eval("binomialProb(20,0.5,"+ vector +")").asDoubles();
+			double[] prob = connection.eval("binomialProb(100,0.5,numbers)").asDoubles();
 			for(double i:prob)
             	System.out.println(i);
 		} catch(RserveException e) {
