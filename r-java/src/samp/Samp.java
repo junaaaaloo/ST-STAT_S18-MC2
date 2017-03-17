@@ -7,13 +7,24 @@ public class Samp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		RConnection connection = null;
+		String place = "C:\\\\Users\\\\Angel\\\\Documents\\\\2nd year - 2nd Term\\\\ST-STAT\\\\ST-STAT_S18-MC2\\\\r-java";
 		try{
 			connection = new RConnection();
-			String x = "5,20,0.5";
-			//String vector = "c(1,2,3,4)";
-            connection.eval("probToss=dbinom(" + x +")");
-            double prob = connection.eval("probToss").asDouble();
-            System.out.println("The probability is=" + prob);
+			//String x = "5,20,0.5";
+			String vector = "c(5,1)";
+		/*	connection.eval("x = "+vector);
+            connection.eval("probToss=mean(x)");
+            int prob = connection.eval("probToss").asInteger();
+            int[] num = connection.eval("x").asIntegers();
+            for(int i:num)
+            	System.out.println(i);
+            System.out.println("The probability is=" + prob);*/
+			connection.eval("source('"+place+"\\\\process.R')");
+			double probability = connection.eval("binomial(20,0.5,"+ vector +")").asDouble();
+			System.out.println("The probability is=" + probability);
+			double[] prob = connection.eval("binomialProb(20,0.5,"+ vector +")").asDoubles();
+			for(double i:prob)
+            	System.out.println(i);
 		} catch(RserveException e) {
 			e.printStackTrace();
 		} catch(REXPMismatchException e) {
