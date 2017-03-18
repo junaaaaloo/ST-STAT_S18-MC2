@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="control.AnimationControl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.AnimationControl">
    <children>
       <Canvas fx:id="canvas" height="500.0" layoutY="81.0" width="500.0" />
       <Button fx:id="fastForwardButton" layoutX="364.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="122.0" text="FAST FORWARD &gt;&gt;" />
@@ -16,5 +16,10 @@
       <Button fx:id="skipButton" layoutX="364.0" layoutY="45.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="122.0" text="SKIP" />
       <Button fx:id="stopButton" layoutX="14.0" layoutY="45.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="122.0" text="STOP" />
       <Button fx:id="pauseButton" layoutX="189.0" layoutY="45.0" mnemonicParsing="false" prefHeight="9.0" prefWidth="122.0" text="PAUSE" />
+      <ImageView fitHeight="447.0" fitWidth="476.0" layoutX="14.0" layoutY="103.0">
+         <image>
+            <Image url="@../../../../../../Downloads/coin-flip.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
