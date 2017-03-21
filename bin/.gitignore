@@ -1,10 +1,6 @@
-/application/
-/view/
-/HypergeometricPane.fxml
-/MultinomialPane.fxml.fxml
-/ExperimentMainPane.fxml
-/ExperimentNegativeBinomialPane.fxml
-/MainPane.fxml
-/NegativeBinomialPane.fxml
-/ToolbarPane.fxml
 /control/
+/view/
+/model/
+/Experiment/
+/main/
+/debug/
