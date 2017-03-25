@@ -2,6 +2,10 @@ package samp;
 import org.rosuda.REngine.REXPMismatchException;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+
 public class Samp {
 
 	public static void main(String[] args) {
@@ -9,31 +13,38 @@ public class Samp {
 		RConnection connection = null;
 		String place = "C:\\\\Users\\\\Angel\\\\Documents\\\\2nd year - 2nd Term\\\\ST-STAT\\\\ST-STAT_S18-MC2\\\\r-java";
 		try{
+			PrintWriter pw = new PrintWriter(new File ("data.csv"));
+			StringBuilder sb = new StringBuilder();
 			connection = new RConnection();
-			//String x = "5,20,0.5";
-			String vector = "c(5,1)";
-		/*	connection.eval("x = "+vector);
-            connection.eval("probToss=mean(x)");
-            int prob = connection.eval("probToss").asInteger();
-            int[] num = connection.eval("x").asIntegers();
-            for(int i:num)
-            	System.out.println(i);
-            System.out.println("The probability is=" + prob);*/
 			connection.eval("source('"+place+"\\\\process.R')");
-			connection.eval("numbers = rbinom(30,100,0.5)");
-			int[] num = connection.eval("numbers").asIntegers();
-			for(int j:num)
-            	System.out.println(j);
-			double probability = connection.eval("binomial(100,0.5,numbers)").asDouble();
+			connection.eval("numbers = rbinom(100,50,0.5)");
+			String[] numbers = connection.eval("numbers").asStrings();
+			for(String j:numbers){
+            	sb.append(j);
+            	sb.append(",");
+			}
+			sb.append("Random Numbers\n");
+			connection.eval("aveProb = binomial(50,0.5,numbers)");
+			double probability = connection.eval("aveProb").asDouble();
 			System.out.println("The probability is=" + probability);
-			double[] prob = connection.eval("binomialProb(100,0.5,numbers)").asDoubles();
-			for(double i:prob)
-            	System.out.println(i);
+			connection.eval("probs = binomialProb(50,0.5,numbers)");
+			String[] prob = connection.eval("probs").asStrings();
+			connection.eval("freqPics(numbers,aveProb,0.5,'binom')");
+			for(String i:prob){
+            	sb.append(i);
+            	sb.append(",");
+			}
+			sb.append("Probabilities");
+			pw.write(sb.toString());
+			pw.close();
 		} catch(RserveException e) {
 			e.printStackTrace();
 		} catch(REXPMismatchException e) {
 			e.printStackTrace();
-		} finally {
+		} catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		finally {
 			connection.close();
 		}
 
