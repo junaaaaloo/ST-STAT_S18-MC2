@@ -17,6 +17,7 @@ public class Samp {
 			StringBuilder sb = new StringBuilder();
 			connection = new RConnection();
 			connection.eval("source('"+place+"\\\\process.R')");
+			//rbinom(trials, number of coins\picks, probablity)
 			connection.eval("numbers = rbinom(100,50,0.5)");
 			String[] numbers = connection.eval("numbers").asStrings();
 			for(String j:numbers){
@@ -27,6 +28,7 @@ public class Samp {
 			connection.eval("aveProb = binomial(50,0.5,numbers)");
 			double probability = connection.eval("aveProb").asDouble();
 			System.out.println("The probability is=" + probability);
+			//binomialProb(number of coins\flips
 			connection.eval("probs = binomialProb(50,0.5,numbers)");
 			String[] prob = connection.eval("probs").asStrings();
 			connection.eval("freqPics(numbers,aveProb,0.5,'binom')");

@@ -61,3 +61,27 @@ hyperProb = function(succPop, failPop, size, nums) {
   }
   return(sumNums)
 }
+
+multi = function(nums, probs) {
+  sumNums = c(0)
+  for(i in 1:dim(nums)[2]){
+    cc = c()
+    for(j in 1:dim(nums)[1]){
+    cc = append(cc,nums[j,i])
+    }
+    sumNums[1] = sumNums[1] + dmultinom(cc, size=NULL, probs)
+    }
+  }
+}
+
+multiProb = function(nums, probs) {
+  sumNums = c()
+  for(i in 1:dim(nums)[2]){
+    cc = c()
+    for(j in 1:dim(nums)[1]){
+    cc = append(cc,nums[j,i])
+    }
+    sumNums = append(sumNums, dmultinom(cc, size=NULL, probs))
+    }
+  }
+}
